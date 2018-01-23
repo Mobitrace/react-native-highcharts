@@ -72,7 +72,7 @@ class ChartWeb extends Component {
         let config = JSON.stringify(this.props.config, function (key, value) {//create string of json but if it detects function it uses toString()
             return (typeof value === 'function') ? value.toString() : value;
         });
-        alert(this.props.windowExtraData);
+        window.extraData = this.props.windowExtraData;
 
 
         config = JSON.parse(config)
