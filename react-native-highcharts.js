@@ -30,14 +30,17 @@ class ChartWeb extends Component {
                         -webkit-user-select: none;
                     }
                     </style>
-                    <head>
+                    <head>`,
+            extraData: `<script> window.extraData = `,
+            mid: `        </script>
+                        
                         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
                         ${this.props.stock ? '<script src="https://code.highcharts.com/stock/highstock.js"></script>'
-                                      : '<script src="https://code.highcharts.com/highcharts.js"></script>'}
+                : '<script src="https://code.highcharts.com/highcharts.js"></script>'}
                         ${this.props.more ? '<script src="https://code.highcharts.com/highcharts-more.js"></script>'
-                                      : ''}
+                : ''}
                         ${this.props.guage ? '<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>'
-                                      : ''}
+                : ''}
                         <script src="https://code.highcharts.com/modules/exporting.js"></script>
                         <script>
                         $(function () {
@@ -56,6 +59,7 @@ class ChartWeb extends Component {
                 height:win.height,
                 width:win.width
             }
+
         }
     }
 
@@ -72,24 +76,26 @@ class ChartWeb extends Component {
             return (typeof value === 'function') ? value.toString() : value;
         });
 
+        let extraData = JSON.stringify(this.props.windowExtraData);
+
 
         config = JSON.parse(config)
-        let concatHTML = `${this.state.init}${flattenObject(config)}${this.state.end}`;
-        
+        let concatHTML = `${this.state.init}${this.state.extraData}${extraData}${this.state.mid}${flattenObject(config)}${this.state.end}`;
+
         return (
-          <View style={this.props.style}>
-              <WebView
-                  onLayout={this.reRenderWebView}
-                  style={styles.full}
-                  source={{ html: concatHTML, baseUrl: 'web/' }}
-                  javaScriptEnabled={true}
-                  domStorageEnabled={true}
-                  scalesPageToFit={true}
-                  scrollEnabled={false}
-                  automaticallyAdjustContentInsets={true}
-                  {...this.props}
-              />
-          </View>
+            <View style={this.props.style}>
+                <WebView
+                    onLayout={this.reRenderWebView}
+                    style={styles.full}
+                    source={{ html: concatHTML, baseUrl: 'web/' }}
+                    javaScriptEnabled={true}
+                    domStorageEnabled={true}
+                    scalesPageToFit={true}
+                    scrollEnabled={false}
+                    automaticallyAdjustContentInsets={true}
+                    {...this.props}
+                />
+            </View>
         );
     };
 };
