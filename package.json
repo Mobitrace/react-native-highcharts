@@ -25,5 +25,7 @@
     "url": "https://github.com/TradingPal/react-native-highcharts/issues"
   },
   "homepage": "https://github.com/TradingPal/react-native-highcharts#readme",
-  "dependencies": {}
+  "dependencies": {
+    "react-native-fs": "^2.9.11"
+  }
 }
