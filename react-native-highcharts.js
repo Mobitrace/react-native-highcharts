@@ -84,6 +84,7 @@ class ChartWeb extends Component {
         return (
             <View style={this.props.style}>
                 <WebView
+                    originWhitelist={['*']}
                     onLayout={this.reRenderWebView}
                     style={styles.full}
                     source={{ html: concatHTML, baseUrl: 'web/' }}
