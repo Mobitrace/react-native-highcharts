@@ -4,10 +4,10 @@ import {
     StyleSheet,
     Text,
     View,
-    WebView,
     Image,
     Dimensions
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 const win = Dimensions.get('window');
 class ChartWeb extends Component {
@@ -64,10 +64,13 @@ class ChartWeb extends Component {
 
     // used to resize on orientation of display
     reRenderWebView(e) {
+        /*
         this.setState({
             height: e.nativeEvent.layout.height,
             width: e.nativeEvent.layout.width,
         })
+         */
+
     }
 
     render() {
